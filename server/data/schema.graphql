@@ -1,0 +1,50 @@
+type Query {
+  Mission(id: ID!): Mission
+  Missions(
+    sort: MissionSortOptions
+  ): [Mission]!
+}
+
+input MissionSortOptions {
+  field: MissionSortFields!
+  desc: Boolean
+}
+
+enum MissionSortFields {
+  Title
+  Date
+}
+
+type Mission {
+  id: ID!
+  title: String!
+  operator: String!
+  launch: Launch
+  orbit: Orbit
+  payload: Payload
+}
+
+type Launch {
+  date: DateTime!
+  vehicle: String!
+  location: Location!
+}
+
+type Location {
+  name: String!
+  longitude: Float!
+  latitude: Float!
+}
+
+type Orbit {
+  periapsis: Int!
+  apoapsis: Int!
+  inclination: Int!
+}
+
+type Payload {
+  capacity: Int!
+  available: Int!
+}
+
+scalar DateTime
