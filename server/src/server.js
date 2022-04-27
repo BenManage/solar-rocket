@@ -1,10 +1,12 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { readFile, access, mkdir, copyFile } from "fs/promises";
+import { readFile, access, mkdir, copyFile, writeFile } from "fs/promises";
 import { loadSchema } from "@graphql-tools/load";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { DateTimeResolver } from "graphql-scalars";
 import path from "path";
+import { v4 as uuidv4 } from "uuid";
+import { createHash } from "crypto";
 
 const DATA_DIR = new URL("../.data", import.meta.url);
 const DATA_DIR_INIT = new URL("../data/init", import.meta.url);
@@ -58,7 +60,7 @@ await _g();
 const loadMissions = async () =>
   await _g(async () => {
     return JSON.parse(
-      await readFile(path.join(DATA_DIR.pathname, DATA_FILE_MISSIONS), "utf-8")
+      await readFile(path.join(DATA_DIR.pathname, DATA_FILE_MISSIONS), "utf8")
     );
   });
 
@@ -92,8 +94,26 @@ const schema = await loadSchema("./data/schema.graphql", {
         return missions;
       },
       async Mission(obj, args) {
-        const mission = await loadMissions();
-        return mission.find((mission) => mission.id === args.id);
+        const missions = await loadMissions();
+        return missions.find((mission) => mission.id === args.id);
+      },
+    },
+    Mutation: {
+      async createMission(obj, args) {
+        const id = createHash("sha256")
+          .update(uuidv4())
+          .digest("hex")
+          .substring(32);
+        const missions = await loadMissions();
+        args.mission.id = id;
+        missions.push(args.mission);
+
+        await writeFile(
+          path.join(DATA_DIR.pathname, DATA_FILE_MISSIONS),
+          JSON.stringify(missions),
+          "utf8"
+        );
+        return args.mission;
       },
     },
   },

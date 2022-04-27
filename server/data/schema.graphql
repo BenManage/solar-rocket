@@ -1,8 +1,41 @@
 type Query {
   Mission(id: ID!): Mission
-  Missions(
-    sort: MissionSortOptions
-  ): [Mission]!
+  Missions(sort: MissionSortOptions): [Mission]!
+}
+
+type Mutation {
+  createMission(mission: MissionInput): Mission
+}
+
+input MissionInput {
+  title: String!
+  operator: String!
+  launch: LaunchInput!
+  orbit: OrbitInput!
+  payload: PayloadInput!
+}
+
+input LaunchInput {
+  date: DateTime!
+  vehicle: String!
+  location: LocationInput!
+}
+
+input LocationInput {
+  name: String!
+  longitude: Float!
+  latitude: Float!
+}
+
+input OrbitInput {
+  periapsis: Int!
+  apoapsis: Int!
+  inclination: Int!
+}
+
+input PayloadInput {
+  capacity: Int!
+  available: Int!
 }
 
 input MissionSortOptions {
@@ -19,9 +52,9 @@ type Mission {
   id: ID!
   title: String!
   operator: String!
-  launch: Launch
-  orbit: Orbit
-  payload: Payload
+  launch: Launch!
+  orbit: Orbit!
+  payload: Payload!
 }
 
 type Launch {
