@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "ts-watch": "tsc --watch",
-    "server-watch": "nodemon dist/server.js",
-    "start": "concurrently \"npx tsc --watch\" \"nodemon dist/server.js\""
+    "server-watch": "nodemon dist/server.js"
   },
   "author": "",
   "license": "UNLICENSED",
