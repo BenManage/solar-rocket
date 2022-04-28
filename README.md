@@ -23,4 +23,9 @@ This is a simple project designed to not only test your React skills, but also t
 1. The weather page currently has no content. We need to show a five-day live weather forecast on this page. You can use https://www.weatherapi.com/ or any other free weather API service to pull the forecast data. Make it look pretty.
 1. Someone started creating a dialog to create new missions, but they never finished it (and it doesn't even have the right fields). Update the dialog to create new missions with the necessary data and use the API to save the data so it shows up on the missions page.
 
-## Good Luck!
+## Extra Credit (if you really want to impress us 😊)
+- Add the ability for users to modify and delete missions
+
+<br>
+
+<h1 align="center">Good Luck!</h1>
