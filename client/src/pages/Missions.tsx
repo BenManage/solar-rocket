@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { AppLayout } from "../layouts/AppLayout";
 import fetchGraphQL from "../graphql/GraphQL";
 import { Mission } from "../graphql/schema";
@@ -19,9 +19,6 @@ import {
   Toolbar,
   Container,
   IconButton,
-  MenuItem,
-  Menu,
-  ButtonProps,
   Tooltip,
   Snackbar,
   Alert,
@@ -36,6 +33,8 @@ import {
 } from "@mui/icons-material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+
+import { ListMenu } from "../components/ListMenu";
 
 type SortField = "Title" | "Date";
 
@@ -70,62 +69,6 @@ const getMissions = async (
   );
 };
 
-interface ListMenuProps extends ButtonProps {
-  options: [string, ...string[]];
-  onSelectionChange?(event: React.SyntheticEvent | Event, value: String): any;
-}
-
-const ListMenu: React.FC<ListMenuProps> = (
-  props: ListMenuProps
-): JSX.Element => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
-
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleMenuClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: number
-  ) => {
-    setSelectedIndex(index);
-    if (props.onSelectionChange) {
-      props.onSelectionChange(event, props.options[index]);
-    }
-    setAnchorEl(null);
-  };
-
-  return (
-    <>
-      <Button
-        onClick={handleClick}
-        sx={{ color: "text.primary" }}
-        endIcon={props.endIcon}
-        startIcon={props.startIcon}
-        size="large"
-      >
-        {props.options[selectedIndex]}
-      </Button>
-
-      <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
-        {props.options.map((option: string, index: number) => (
-          <MenuItem
-            key={index}
-            onClick={(event) => handleMenuClick(event, index)}
-            selected={selectedIndex === index}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </>
-  );
-};
-
 const Missions = (): JSX.Element => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [newMissionOpen, setNewMissionOpen] = useState(false);
@@ -134,10 +77,7 @@ const Missions = (): JSX.Element => {
   const [sortField, setSortField] = useState<SortField>("Title");
   const [errMessage, setErrMessage] = useState<String | null>(null);
 
-  const handleErrClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
+  const handleErrClose = (event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") return;
     setErrMessage(null);
   };
@@ -155,9 +95,9 @@ const Missions = (): JSX.Element => {
     setTempLaunchDate(newValue);
   };
 
-  const handleSortFieldChange = (event: React.SyntheticEvent, value: SortField) => {
+  const handleSortFieldChange = (event: SyntheticEvent, value: SortField) => {
     setSortField(value);
-  }
+  };
   const handleSortDescClick = () => {
     setSortDesc(!sortDesc);
   };
@@ -185,7 +125,11 @@ const Missions = (): JSX.Element => {
             <IconButton>
               <FilterAltIcon />
             </IconButton>
-            <ListMenu options={["Date", "Title"]} endIcon={<SortIcon />} onSelectionChange={handleSortFieldChange} />
+            <ListMenu
+              options={["Date", "Title"]}
+              endIcon={<SortIcon />}
+              onSelectionChange={handleSortFieldChange}
+            />
             <IconButton onClick={handleSortDescClick}>
               {sortDesc ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
             </IconButton>
