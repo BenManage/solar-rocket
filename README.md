@@ -2,13 +2,13 @@
 
 ## Welcome to the BenManage Solar Rocket developer assessment
 
-This is a simple project designed to not only test your [React](https://reactjs.org/) skills, but also to gauge your ability to learn and figure out new things. Don't worry if you encounter something you don't know. [Google](https://www.google.com/) is your friend 😊.
+This is a simple project designed to not only test your React skills, but also to gauge your ability to learn and figure out new things. Don't worry if you encounter something you don't know. [Google](https://www.google.com/) is your friend 😊.
 
 ## Technical information
 
 - This project contains both the server-side and client-side code for this app.
 - The server-side code is using [ExpressJS](https://expressjs.com/).
-- The client-side is using React with [MUI](https://mui.com/) and [TypeScript](https://www.typescriptlang.org/).
+- The client-side is using [React](https://reactjs.org/) with [MUI](https://mui.com/) and [TypeScript](https://www.typescriptlang.org/).
 
 ## Getting Started
 - Fork this repository and work on your local machine. When you are finished, push your changes and submit the link to your repository.
