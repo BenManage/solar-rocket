@@ -26,7 +26,8 @@ This is a simple project designed to not only test your React skills, but also t
 1. Someone started creating a dialog to create new missions, but they never finished it (and it doesn't even have the right fields). Update the dialog to create new missions with the necessary data and use the API to save the data so it shows up on the missions page.
 
 ## Extra Credit (if you really want to impress us 😊)
-- Add the ability for users to modify and delete missions
+1. Add the ability for users to modify and delete missions.
+1. Add any other improvements that you think the mission page can use.
 
 <br>
 
