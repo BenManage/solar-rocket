@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "client": "npm start --prefix client",
-    "server": "npm start --prefix server",
-    "start": "concurrently --kill-others --names \"Server,Client\" -c \"bgMagenta.bold,bgGreen.bold\" npm:server npm:client"
+    "server-ts": "npm run ts-watch --prefix server",
+    "server": "npm run server-watch --prefix server",
+    "start": "concurrently --kill-others --names \"Server-TS,Server,Client\" -c \"bgMagenta.bold,bgMagenta.bold,bgGreen.bold\" npm:server-ts npm:server npm:client"
   },
   "author": "BenManage",
   "license": "UNLICENSED",

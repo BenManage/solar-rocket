@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "ts-watch": "tsc --watch",
+    "server-watch": "nodemon dist/server.js",
     "start": "concurrently \"npx tsc --watch\" \"nodemon dist/server.js\""
   },
   "author": "",
