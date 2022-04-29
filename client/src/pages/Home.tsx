@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
 
   return (
     <AppLayout>
-      <ReactMarkdown>{readmeContent}</ReactMarkdown>
+      <ReactMarkdown linkTarget="_blank">{readmeContent}</ReactMarkdown>
     </AppLayout>
   );
 };
