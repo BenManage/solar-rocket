@@ -33,7 +33,7 @@ app
     });
   });
 
-// GraphQL Query Wrapper function which also initializes data if necessary
+// Wrapper function which initializes data if necessary
 const _g = async (callback?: Function) => {
   try {
     await access(DATA_DIR);
