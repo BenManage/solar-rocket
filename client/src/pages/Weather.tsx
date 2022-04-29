@@ -2,7 +2,7 @@ import { AppLayout } from "../layouts/AppLayout";
 
 const Weather = (): JSX.Element => {
   return (
-    <AppLayout>
+    <AppLayout title="Weather">
       <div>Weather!</div>
     </AppLayout>
   );
