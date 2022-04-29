@@ -96,6 +96,13 @@ const main = async () => {
     },
   });
 
+  app.get("/readme", 
+    async (req : Request, res: Response ) => {
+      const readme : String = await readFile(path.join(__dirname, "../../README.md"), "utf8")
+      res.send(readme);
+    }
+  );
+
   app.use(
     "/graphql",
     graphqlHTTP({

@@ -29,6 +29,5 @@ This is a simple project designed to not only test your React skills, but also t
 1. Add the ability for users to modify and delete missions.
 1. Add any other improvements that you think the mission page can use.
 
-<br>
-
-<h1 align="center">Good Luck!</h1>
+&nbsp;
+# Good Luck!

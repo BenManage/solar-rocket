@@ -1,18 +1,19 @@
-import { ThemeProvider } from "@emotion/react";
-import { Typography } from "@mui/material";
-import {createTheme, responsiveFontSizes} from "@mui/material/styles"
+import { useEffect, useState } from "react";
 import { AppLayout } from "../layouts/AppLayout";
+import ReactMarkdown from "react-markdown";
 
 const Home = (): JSX.Element => {
-  let theme = createTheme();
-  theme = responsiveFontSizes(theme);
+  const [readmeContent, setReadmeContent] = useState("");
+
+  useEffect(() => {
+    fetch("/readme").then(async (res: Response) => {
+      setReadmeContent(await res.text());
+    });
+  }, []);
+
   return (
     <AppLayout>
-      <ThemeProvider theme={theme}>
-        <Typography variant="h2">Solar Rocket App</Typography>
-        <Typography variant="h3">Welcome to the Solar Rocket App</Typography>
-        
-      </ThemeProvider>
+      <ReactMarkdown>{readmeContent}</ReactMarkdown>
     </AppLayout>
   );
 };
