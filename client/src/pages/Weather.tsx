@@ -1,9 +1,12 @@
+import { Container } from "@mui/material";
 import { AppLayout } from "../layouts/AppLayout";
 
 const Weather = (): JSX.Element => {
   return (
     <AppLayout title="Weather">
-      <div>Weather!</div>
+      <Container maxWidth="lg">
+        <div>Weather!</div>
+      </Container>
     </AppLayout>
   );
 };

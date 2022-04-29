@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { AppLayout } from "../layouts/AppLayout";
 import ReactMarkdown from "react-markdown";
+import { Box, CircularProgress, Container } from "@mui/material";
 
 const Home = (): JSX.Element => {
-  const [readmeContent, setReadmeContent] = useState("");
+  const [readmeContent, setReadmeContent] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/readme").then(async (res: Response) => {
@@ -13,7 +14,17 @@ const Home = (): JSX.Element => {
 
   return (
     <AppLayout>
-      <ReactMarkdown linkTarget="_blank">{readmeContent}</ReactMarkdown>
+      <Container maxWidth="lg">
+        {readmeContent ? (
+          <ReactMarkdown linkTarget="_blank">
+            {readmeContent}
+          </ReactMarkdown>
+        ) : (
+          <Box sx={{ textAlign: "center" }}>
+            <CircularProgress />
+          </Box>
+        )}
+      </Container>
     </AppLayout>
   );
 };

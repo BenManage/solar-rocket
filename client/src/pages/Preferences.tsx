@@ -1,9 +1,12 @@
+import { Container } from "@mui/material";
 import { AppLayout } from "../layouts/AppLayout";
 
 const Preferences = (): JSX.Element => {
   return (
     <AppLayout title="Preferences">
-      <div>Preferences!</div>
+      <Container maxWidth="lg">
+        <div>Preferences!</div>
+      </Container>
     </AppLayout>
   );
 };

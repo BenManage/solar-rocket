@@ -22,6 +22,8 @@ import {
   Tooltip,
   Snackbar,
   Alert,
+  Box,
+  CircularProgress,
 } from "@mui/material";
 
 import {
@@ -70,7 +72,7 @@ const getMissions = async (
 };
 
 const Missions = (): JSX.Element => {
-  const [missions, setMissions] = useState<Mission[]>([]);
+  const [missions, setMissions] = useState<Mission[] | null>(null);
   const [newMissionOpen, setNewMissionOpen] = useState(false);
   const [tempLaunchDate, setTempLaunchDate] = useState<Date | null>(null);
   const [sortDesc, setSortDesc] = useState<boolean>(true);
@@ -135,24 +137,33 @@ const Missions = (): JSX.Element => {
             </IconButton>
           </Grid>
         </Toolbar>
-        <Grid container spacing={2}>
-          {missions.map((missions: Mission, key: number) => (
-            <Grid item key={key}>
-              <Card sx={{ width: 275, height: 200 }}>
-                <CardHeader
-                  title={missions.title}
-                  subheader={new Date(missions.launch.date).toDateString()}
-                />
-                <CardContent>
-                  <Typography noWrap>{missions.operator}</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button>Edit</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+
+        {missions ? (
+          <Grid container spacing={2}>
+            {" "}
+            {missions.map((missions: Mission, key: number) => (
+              <Grid item key={key}>
+                <Card sx={{ width: 275, height: 200 }}>
+                  <CardHeader
+                    title={missions.title}
+                    subheader={new Date(missions.launch.date).toDateString()}
+                  />
+                  <CardContent>
+                    <Typography noWrap>{missions.operator}</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button>Edit</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Box sx={{ textAlign: "center" }}>
+            <CircularProgress />
+          </Box>
+        )}
+
         <Tooltip title="New Mission">
           <Fab
             sx={{ position: "fixed", bottom: 16, right: 16 }}
