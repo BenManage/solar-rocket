@@ -15,8 +15,8 @@ This is a simple project designed to not only test your React skills, but also t
 - You will need to install packages by running `npm i` in the root directory, as well as the client and server directories, in order to get started
 - You can run both the client and server simultaneously by running `npm start` in the root directory
 - The first time the app runs, the JSON data for the API will be copied to a `/server/.data` directory. If the data for whatever reason gets corrupted, you can refresh the data by safely deleting the `/server/.data` directory and it will be regenerated the next time the server runs.
-- The client app should launch at http://localhost:3000/
-- You can test [GraphQL](https://graphql.org/) queries using [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) at http://localhost:5000/graphql
+- The client app should launch at [http://localhost:3000/](http://localhost:3000/)
+- You can test [GraphQL](https://graphql.org/) queries using [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) at [http://localhost:5000/graphql](http://localhost:5000/graphql)
 
 ## Tasks
 
