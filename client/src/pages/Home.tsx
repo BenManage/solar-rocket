@@ -16,7 +16,9 @@ const Home = (): JSX.Element => {
     <AppLayout>
       <Container maxWidth="lg">
         {readmeContent ? (
-          <ReactMarkdown linkTarget="_blank">
+          <ReactMarkdown linkTarget="_blank" components={{code({children, ...props}){
+            return <code {...props} style={{backgroundColor: "#eee", padding: 2, fontSize: "0.8em"}}>{children}</code>
+          }}}>
             {readmeContent}
           </ReactMarkdown>
         ) : (
