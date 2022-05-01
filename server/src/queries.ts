@@ -19,10 +19,10 @@ export const ListMissions = (missions: Mission[], args: any) => {
           a = "";
           b = "";
       }
-      if (args.sort?.desc !== false) {
-        return a > b ? 1 : -1;
-      } else {
+      if (args.sort?.desc === true) {
         return a < b ? 1 : -1;
+      } else {
+        return a > b ? 1 : -1;        
       }
     });
   }
